@@ -532,19 +532,6 @@ a.art:focus-visible img { transform: scale(1.03); }
 .card__media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--inv-bg); }
 .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .card:hover .card__media img { transform: scale(1.03); }
-/* Ödev kartı görseli: dosya adı gibi duran yazı. Ekran görüntüsü eklenince img ile değiştirilebilir. */
-.card__code {
-  display: grid;
-  height: 100%;
-  place-content: center;
-  gap: 6px;
-  padding: 24px;
-  color: var(--inv-ink);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  text-align: center;
-}
-.card__code b { font: 400 3.5rem/1 var(--font-display); letter-spacing: -0.02em; }
-.card__code span { font-size: 0.9rem; color: var(--inv-muted); }
 .card__body { display: flex; flex-direction: column; gap: 10px; padding: 24px; flex: 1; }
 .card__meta { font-size: 0.875rem; color: var(--muted); }
 .card__learned { font-size: 0.975rem; }

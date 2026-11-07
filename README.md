@@ -4,7 +4,7 @@
 
 GEP1316 Kodlama Okuryazarlığı, Ara Değerlendirme Ödevi 2 (2026-2027 Güz).
 Bahçeşehir Üniversitesi Çizgi Film ve Animasyon öğrencisi Elif Ecem Gelir'in karakter tasarımı,
-sahne ve renk çalışmalarını ve GEP1316 ödevlerini gösteren dört sayfalık portfolyo.
+sahne ve renk çalışmalarını gösteren dört sayfalık portfolyo.
 
 ## Sayfalar
 
@@ -12,7 +12,7 @@ sahne ve renk çalışmalarını ve GEP1316 ödevlerini gösteren dört sayfalı
 | --- | --- |
 | `index.html` | Ana sayfa: kısa tanıtım, avatar, gezinti menüsü, seçili çizimler |
 | `hakkimda.html` | Eğitim, ilgi alanları, "Kodlama ve yapay zekânın mesleğimdeki yeri" |
-| `projeler.html` | 9 proje kartı (4 çizim, 5 ödev): görsel, açıklama, bağlantı, "Ne öğrendim" |
+| `projeler.html` | 4 çizim projesi kartı: görsel, açıklama, Behance bağlantısı, "Ne öğrendim" |
 | `iletisim.html` | Doğrulamalı form, aydınlatma metni, Behance ve GitHub bağlantıları |
 
 ## Teknik
@@ -23,7 +23,7 @@ sahne ve renk çalışmalarını ve GEP1316 ödevlerini gösteren dört sayfalı
 - **JavaScript etkileşimleri** (`script.js` içinde numaralı bloklar):
   1. Karanlık mod: seçim `localStorage`'da hatırlanır
   2. Mobil menü: `aria-expanded`, Escape ile kapanma
-  3. Proje filtreleme ve Türkçe harf duyarlı arama, sonuç sayısı ekran okuyucuya okunur
+  3. Proje filtreleme (karakter / sahne) ve Türkçe harf duyarlı arama, sonuç sayısı ekran okuyucuya okunur
   4. Form doğrulama: alan alan hata mesajı, karakter sayacı, geri bildirim mesajı
   5. "Banyo" efekti: büyük çizim ekrana girince griden renge geçer
   6. Alt bilgideki yılın otomatik yazılması
@@ -62,10 +62,7 @@ Sonra tarayıcıda `http://localhost:8000` adresini aç.
 
 ## Teslimden önce düzenlenecekler
 
-- [ ] `projeler.html`: Ödev 1 ve Ara Değerlendirme 1 kartlarını kendi ödevlerinle doldur
-      (kartlarda `DÜZENLE` yorumu var), ödev kartlarındaki GitHub bağlantılarını ödevin kendi
-      deposuna yönlendir.
-- [ ] `projeler.html`: Ödev 2 ve Ödev 5 kartlarının açıklama ve "Ne öğrendim" cümlelerini kontrol et.
+- [ ] `projeler.html`: kartlardaki "Ne öğrendim" cümlelerini kendi deneyimine göre kontrol et.
 - [ ] `hakkimda.html`: "Kodlama ve yapay zekânın mesleğimdeki yeri" bölümünü Ödev 2'deki
       paragrafının geliştirilmiş hâliyle değiştir (şu an taslak).
 - [ ] `script.js`, satır 16: `ALICI_EPOSTA` değerini kendi e-posta adresinle değiştir.
