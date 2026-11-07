@@ -1,24 +1,3 @@
-/* ==========================================================================
-   Elif Ecem Gelir · Portfolyo · ortak stil dosyası
-   Tüm sayfalar (index, hakkimda, projeler, iletisim) bu dosyayı kullanır.
-   Bölümler:
-     1. Yazı tipleri (siteyle birlikte barındırılır, Google'a istek gitmez)
-     2. Renk ve ölçü değişkenleri (açık ve koyu tema)
-     3. Temel öğeler
-     4. Ortak parçalar: kapsayıcı, düğmeler, bağlantılar
-     5. Üst menü
-     6. Ana sayfa giriş bölümü (sinema karesi) ve alt sayfa başlıkları
-     7. Bölümler, ızgara ve çizim çerçeveleri
-     8. Proje kartları, filtre ve arama
-     9. Form
-    10. Alt bilgi (footer)
-    11. Hareket: giriş, "banyo" efekti, azaltılmış hareket
-    12. Duyarlı tasarım (@media kuralları: tablet ve telefon)
-   ========================================================================== */
-
-/* 1. Yazı tipleri ----------------------------------------------------------
-   Source Serif 4 (başlıklar) ve Libre Franklin (metin), SIL Open Font License.
-   Türkçe karakterler (ğ, ş, İ) latin-ext dosyasında, ı ise latin dosyasında. */
 @font-face {
   font-family: "Source Serif 4";
   font-style: normal;
@@ -52,34 +31,29 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* 2. Değişkenler -----------------------------------------------------------
-   Açık tema varsayılandır. Koyu tema iki yoldan gelir:
-   - kullanıcının sistemi koyu ise (prefers-color-scheme) ve sitede seçim yapmadıysa,
-   - sitedeki tema düğmesiyle koyu seçildiyse (html[data-theme="dark"]).
-   Kontrast: metin renkleri zemine karşı en az 7:1 (WCAG AAA), düğmeler en az 4.5:1. */
 :root {
-  --bg: #ebe5e3;          /* taş zemin */
-  --surface: #e1dad7;     /* kart ve kutu zemini */
-  --ink: #2b2622;         /* ana metin */
-  --muted: #4a433f;       /* ikincil metin: zemine karşı 7:1 */
+  --bg: #ebe5e3;
+  --surface: #e1dad7;
+  --ink: #2b2622;
+  --muted: #4a433f;
   --line: rgba(43, 38, 34, 0.16);
-  --accent: #0f7d45;      /* yeşil vurgu: düğmeler, odak halkası */
+  --accent: #0f7d45;
   --accent-ink: #ffffff;
-  --accent-soft: #b5cdbc; /* ikincil (tonal) düğme zemini: zeminden ayrışır, metni 8.8:1 */
+  --accent-soft: #b5cdbc;
   --error: #a3261b;
-  --inv-bg: #2b2622;      /* koyu bant, giriş kutusu, alt bilgi */
+  --inv-bg: #2b2622;
   --inv-surface: #36312d;
   --inv-ink: #ebe5e3;
-  --inv-muted: #c7c1bd;   /* koyu zeminde ikincil metin: 8.4:1 */
+  --inv-muted: #c7c1bd;
 
   --font-display: "Source Serif 4", Georgia, serif;
   --font-text: "Libre Franklin", system-ui, sans-serif;
 
-  --nav-h: 72px;          /* sabit üst menünün yüksekliği */
-  --page: 80px;           /* sayfa kenar boşluğu (sol = sağ) */
-  --gutter: 24px;         /* ızgara sütunları arasındaki boşluk */
+  --nav-h: 72px;
+  --page: 80px;
+  --gutter: 24px;
   --radius: 12px;
-  --pad-y: 120px;         /* bölüm üst boşluğu */
+  --pad-y: 120px;
 
   color-scheme: light;
 }
@@ -115,7 +89,6 @@
   color-scheme: dark;
 }
 
-/* 3. Temel öğeler ---------------------------------------------------------- */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -130,14 +103,13 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-text);
-  font-size: 1.0625rem;   /* 17px */
+  font-size: 1.0625rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 img { display: block; max-width: 100%; height: auto; }
 
-/* Düğme ve form öğeleri sayfanın yazı tipini kullansın (tarayıcı varsayılanı Arial değil) */
 button, input, select, textarea { font: inherit; }
 
 h1, h2, h3 {
@@ -154,20 +126,17 @@ h3 { font-size: 1.5rem; line-height: 1.2; }
 
 p { margin: 0; text-wrap: pretty; }
 
-/* Ekranda görünmez, ekran okuyucuda okunur */
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* Klavye odağı: her etkileşimli öğede görünür halka */
 :focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* İçeriğe atla bağlantısı: Tab'a ilk basışta, menünün üstünde görünür */
 .skip-link {
   position: fixed;
   top: 12px;
@@ -183,9 +152,6 @@ p { margin: 0; text-wrap: pretty; }
 }
 .skip-link:focus { transform: none; }
 
-/* 4. Ortak parçalar -------------------------------------------------------- */
-
-/* Tek kapsayıcı: her bölümün içeriği aynı sol ve sağ çizgide başlar ve biter */
 .wrap {
   width: min(1280px, 100% - 2 * var(--page));
   margin-inline: auto;
@@ -211,7 +177,6 @@ p { margin: 0; text-wrap: pretty; }
 .btn:active { transform: translateY(0) scale(0.98); }
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* Metin bağlantısı: alt çizgi hover'da sağa doğru silinir */
 .link {
   color: inherit;
   font-weight: 500;
@@ -224,7 +189,6 @@ p { margin: 0; text-wrap: pretty; }
   padding-bottom: 2px;
 }
 .link:hover { background-size: 0% 1px; background-position: 100% 100%; }
-/* Oklu bağlantı: telefonda parmakla rahat basılsın diye 44px yükseklik */
 .link--arrow {
   display: inline-flex;
   align-items: center;
@@ -234,7 +198,6 @@ p { margin: 0; text-wrap: pretty; }
 .link--arrow:hover { background-position: 100% calc(100% - 9px); }
 .link--arrow::after { content: "\00a0→"; }
 
-/* 5. Üst menü -------------------------------------------------------------- */
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
@@ -300,14 +263,12 @@ p { margin: 0; text-wrap: pretty; }
 .icon-btn:active { transform: scale(0.96); }
 .icon-btn svg { width: 20px; height: 20px; }
 
-/* Tema düğmesindeki ay/güneş: hangi temaya geçileceğini gösterir */
 .theme-toggle .icon-sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 .menu-toggle { display: none; }
 
-/* 6. Ana sayfa girişi: sinema karesi ---------------------------------------- */
 .hero {
   height: 100svh;
   min-height: 600px;
@@ -337,7 +298,6 @@ p { margin: 0; text-wrap: pretty; }
   background: var(--inv-bg);
   color: var(--inv-ink);
 }
-/* İsim satırı: metin kutunun sol çizgisinde, avatar sağda */
 .hero__who {
   display: flex;
   align-items: center;
@@ -357,7 +317,6 @@ p { margin: 0; text-wrap: pretty; }
 .hero__box h1 { font-size: clamp(2.5rem, 1.6rem + 2.6vw, 4.25rem); max-width: 16ch; }
 .hero__lead { margin: 20px 0 28px; max-width: 46ch; color: var(--inv-muted); }
 
-/* Alt sayfaların başlığı (Hakkımda, Projeler, İletişim) */
 .page-head { padding: calc(var(--nav-h) + 96px) 0 64px; }
 .page-head h1 { max-width: 18ch; }
 .page-head .lead { margin-top: 20px; max-width: 58ch; font-size: 1.1875rem; color: var(--muted); }
@@ -374,8 +333,6 @@ p { margin: 0; text-wrap: pretty; }
   object-fit: cover;
 }
 
-/* 7. Bölümler ---------------------------------------------------------------
-   Ana sayfada her bölüm tam bir ekran boyundadır (.screen, --h: 1). */
 .section { padding: var(--pad-y) 0 96px; }
 .section--flush { padding-top: 0; }
 .screen { height: calc(var(--h, 1) * 100svh); }
@@ -390,8 +347,6 @@ p { margin: 0; text-wrap: pretty; }
 
 .section__lead { max-width: 60ch; color: var(--muted); }
 
-/* 12 sütunlu ızgara. Ana sayfadaki her bölüm aynı 5 + 7 bölünmeyi kullanır:
-   solda metin, sağda çizim. */
 .grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -403,7 +358,6 @@ p { margin: 0; text-wrap: pretty; }
 .span-7 { grid-column: span 7; }
 .offset-1 { grid-column: 7 / span 6; }
 
-/* Alt alta dizilen öğeler arasında eşit boşluk */
 .stack {
   display: flex;
   flex-direction: column;
@@ -413,7 +367,6 @@ p { margin: 0; text-wrap: pretty; }
 .stack > .facts,
 .stack > .prose { align-self: stretch; }
 
-/* Çizim çerçevesi: bağlantılı görsel hover'da çerçeve içinde %3 büyür */
 .art {
   position: relative;
   display: block;
@@ -434,8 +387,6 @@ a.art:focus-visible img { transform: scale(1.03); }
 .art--photo { aspect-ratio: 4 / 3; }
 .art--photo img { object-position: 50% 30%; }
 
-/* Çizim grubu: üstte büyük çizim, altında iki küçük çizim.
-   7 sütunluk iç ızgara, sayfanın 12 sütunuyla aynı çizgilere oturur (3 + 4 sütun). */
 .media {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -464,7 +415,6 @@ a.art:focus-visible img { transform: scale(1.03); }
   font-size: 0.925rem;
 }
 
-/* Alıntı: çizgi ya da girinti yok, metin sütunun sol çizgisinde kalır */
 .quote {
   margin: 0;
   font-family: var(--font-display);
@@ -475,13 +425,11 @@ a.art:focus-visible img { transform: scale(1.03); }
 .quote p::after { content: "”"; color: var(--accent); }
 .quote footer { margin-top: 10px; font: 0.925rem var(--font-text); color: var(--muted); }
 
-/* Hakkımda sayfasındaki metin blokları */
 .prose { max-width: 66ch; }
 .prose p + p { margin-top: 1em; }
 .about-row { padding: 72px 0; border-top: 1px solid var(--line); }
 .about-row h2 { font-size: clamp(1.75rem, 1.3rem + 1.2vw, 2.5rem); }
 
-/* 8. Projeler ---------------------------------------------------------------- */
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -547,7 +495,6 @@ a.art:focus-visible img { transform: scale(1.03); }
 .empty[hidden] { display: none; }
 .empty__action { margin-top: 16px; }
 
-/* 9. Form --------------------------------------------------------------------- */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -609,7 +556,6 @@ textarea:focus-visible { outline-offset: 1px; }
 .link-list a:hover { padding-left: 6px; }
 .link-list a span { color: var(--muted); font-weight: 400; font-size: 0.925rem; }
 
-/* 10. Alt bilgi ---------------------------------------------------------------- */
 .site-footer {
   background: var(--inv-bg);
   color: var(--inv-ink);
@@ -648,8 +594,6 @@ textarea:focus-visible { outline-offset: 1px; }
 .site-footer--plain .footer-bottom { border-top: 0; }
 .closing .footer-bottom { padding-bottom: 72px; }
 
-/* 11. Hareket -------------------------------------------------------------------
-   Giriş kutusu sayfa açılınca bir kez yukarı kayarak gelir. */
 @keyframes enter {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: none; }
@@ -657,8 +601,6 @@ textarea:focus-visible { outline-offset: 1px; }
 .m-enter [data-enter] .hero__box { animation: enter 0.7s 0.1s ease-out both; }
 .m-enter [data-enter] .hero__frame > img { animation: enter 0.9s ease-out both; }
 
-/* "Banyo" efekti: büyük çizim ekrana girince griden renge geçer.
-   .develop sınıfını script.js ekler; JavaScript yoksa görsel normal görünür. */
 .develop img {
   filter: grayscale(1) contrast(0.7) brightness(1.15);
   transform: scale(1.04);
@@ -666,7 +608,6 @@ textarea:focus-visible { outline-offset: 1px; }
 }
 .develop.is-developed img { filter: none; transform: none; }
 
-/* Hareketi azaltmak isteyenler için tüm animasyonları kapat */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -677,9 +618,6 @@ textarea:focus-visible { outline-offset: 1px; }
   .develop img { filter: none; transform: none; }
 }
 
-/* 12. Duyarlı tasarım ------------------------------------------------------------ */
-
-/* Kapanış bölümü (footer) en az bir ekran; tablet ve masaüstünde tam bir ekran */
 .closing > .wrap {
   min-height: 100svh;
   display: flex;
@@ -690,7 +628,6 @@ textarea:focus-visible { outline-offset: 1px; }
   .closing > .wrap { height: 100svh; }
 }
 
-/* Tablet: 1023px ve altı */
 @media (max-width: 1023px) {
   :root { --page: 48px; --pad-y: 96px; }
   .span-5, .span-6, .span-7, .offset-1 { grid-column: 1 / -1; }
@@ -706,7 +643,6 @@ textarea:focus-visible { outline-offset: 1px; }
   .close .art { grid-column: 1 / -1; }
   .art--photo { aspect-ratio: 16 / 9; }
 
-  /* Giriş: çizim üstte çerçevede, yazılar altında sayfa zemininde */
   .hero__frame {
     display: flex;
     flex-direction: column;
@@ -732,7 +668,6 @@ textarea:focus-visible { outline-offset: 1px; }
   .hero__lead { color: var(--muted); }
   .hero__who strong { color: var(--ink); }
 
-  /* Menü bağlantıları tam ekran panelde açılır; "Mesaj gönder" çubukta kalır */
   .menu-toggle { display: inline-flex; }
   .site-nav {
     position: fixed;
@@ -746,7 +681,6 @@ textarea:focus-visible { outline-offset: 1px; }
     opacity: 0;
     transition: opacity 0.2s ease, visibility 0.2s;
   }
-  /* Açılırken görünürlük beklemeden değişir; yoksa focus() gizli bağlantıya çalışmaz */
   .site-nav.is-open { visibility: visible; opacity: 1; transition: opacity 0.2s ease, visibility 0s; }
   .site-nav .theme-toggle { align-self: flex-start; }
   .nav-list { flex-direction: column; gap: 0; }
@@ -761,7 +695,6 @@ textarea:focus-visible { outline-offset: 1px; }
   .nav-list a[aria-current="page"] { background: none; box-shadow: none; color: var(--accent); }
 }
 
-/* Telefon: 639px ve altı. Bölüm en az bir ekran, içerik uzarsa bölüm de uzar. */
 @media (max-width: 639px) {
   :root { --page: 20px; --pad-y: 96px; --nav-h: 64px; --gutter: 16px; }
   body { font-size: 1rem; }
@@ -770,8 +703,6 @@ textarea:focus-visible { outline-offset: 1px; }
   .screen { height: auto; min-height: 100svh; }
   .section { padding-bottom: 72px; }
 
-  /* Giriş: telefonda çizim 4:3 kırpılır, böylece başlık ve düğmeler ilk ekrana sığar.
-     Çok kısa ekranlarda bölüm içeriği kadar uzar, bir sonraki bölümün üstüne taşmaz. */
   .hero { height: auto; min-height: 100svh; }
   .hero__frame { gap: 20px; }
   .hero__frame > img { aspect-ratio: 4 / 3; object-position: 50% 30%; }
@@ -792,7 +723,6 @@ textarea:focus-visible { outline-offset: 1px; }
   .quote { font-size: 1.2rem; }
 }
 
-/* Yazdırırken menü gizlenir */
 @media print {
   .site-header, .skip-link, .menu-toggle { display: none; }
   .hero { height: auto; padding-top: 0; }

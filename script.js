@@ -1,24 +1,7 @@
-/* ==========================================================================
-   Elif Ecem Gelir · Portfolyo · ortak JavaScript dosyası
-   Tüm sayfalar bu dosyayı kullanır. Her blok yalnızca kendi öğesi sayfada
-   varsa çalışır; böylece bir sayfada olmayan parça hata vermez.
-
-   Etkileşimler:
-     1. Karanlık mod (tema düğmesi, seçim tarayıcıda hatırlanır)
-     2. Mobil menü (aç/kapat, Escape ile kapanır)
-     3. Proje filtreleme ve arama (projeler.html)
-     4. İletişim formu doğrulama ve geri bildirim mesajı (iletisim.html)
-     5. "Banyo" efekti: büyük çizim ekrana girince renklenir (index.html)
-     6. Alt bilgideki yılın otomatik yazılması
-   ========================================================================== */
-
-/* İletişim formunun açacağı e-posta adresi. Kendi adresinle değiştir. */
 const ALICI_EPOSTA = "ecem@ornek.example";
 
-/* 1. Karanlık mod ---------------------------------------------------------- */
 const temaDugmesi = document.querySelector(".theme-toggle");
 
-// localStorage gizli pencerede hata verebilir; bu yüzden try/catch içinde.
 function kayitliTema() {
   try {
     return localStorage.getItem("tema");
@@ -36,7 +19,6 @@ function temayiUygula(tema) {
   }
 }
 
-// İlk açılış: önce kayıtlı seçim, yoksa işletim sisteminin tercihi.
 const sistemKoyu = window.matchMedia("(prefers-color-scheme: dark)").matches;
 temayiUygula(kayitliTema() || (sistemKoyu ? "dark" : "light"));
 
@@ -47,12 +29,10 @@ if (temaDugmesi) {
     try {
       localStorage.setItem("tema", yeniTema);
     } catch (hata) {
-      // Kaydedilemezse tema yalnızca bu sayfa için değişir; sorun değil.
     }
   });
 }
 
-/* 2. Mobil menü ------------------------------------------------------------ */
 const menuDugmesi = document.querySelector(".menu-toggle");
 const menu = document.getElementById("site-nav");
 
@@ -71,11 +51,10 @@ if (menuDugmesi && menu) {
       menu.classList.add("is-open");
       menuDugmesi.setAttribute("aria-expanded", "true");
       menuDugmesi.setAttribute("aria-label", "Menüyü kapat");
-      menu.querySelector("a").focus(); // klavye kullanıcısı ilk bağlantıya gelir
+      menu.querySelector("a").focus();
     }
   });
 
-  // Escape tuşu menüyü kapatır ve odağı düğmeye geri verir.
   document.addEventListener("keydown", function (olay) {
     if (olay.key === "Escape" && menu.classList.contains("is-open")) {
       menuyuKapat();
@@ -83,11 +62,9 @@ if (menuDugmesi && menu) {
     }
   });
 
-  // Ekran genişleyince (telefon yan çevrilince) menü açık kalmasın.
   window.matchMedia("(min-width: 1024px)").addEventListener("change", menuyuKapat);
 }
 
-/* 3. Proje filtreleme ve arama ---------------------------------------------- */
 const kartlar = document.querySelectorAll(".card");
 const filtreDugmeleri = document.querySelectorAll(".filter-btn");
 const aramaKutusu = document.getElementById("proje-ara");
@@ -96,7 +73,6 @@ const bosMesaj = document.getElementById("bos-sonuc");
 
 let seciliFiltre = "hepsi";
 
-// Türkçe büyük/küçük harf farkını kaldırır: "İ" ve "I" doğru küçülür.
 function sadelestir(metin) {
   return metin.toLocaleLowerCase("tr").trim();
 }
@@ -113,7 +89,6 @@ function projeleriSuz() {
     if (goster) gorunen++;
   });
 
-  // Sonuç sayısı aria-live alanında: ekran okuyucu değişikliği okur.
   sonucSayisi.textContent = gorunen + " proje gösteriliyor";
   bosMesaj.hidden = gorunen !== 0;
 }
@@ -130,7 +105,6 @@ if (kartlar.length && sonucSayisi) {
   });
   if (aramaKutusu) aramaKutusu.addEventListener("input", projeleriSuz);
 
-  // "Tümünü göster" düğmesi filtreyi ve aramayı sıfırlar.
   const sifirla = document.getElementById("filtreyi-sifirla");
   if (sifirla) {
     sifirla.addEventListener("click", function () {
@@ -142,10 +116,8 @@ if (kartlar.length && sonucSayisi) {
   projeleriSuz();
 }
 
-/* 4. İletişim formu --------------------------------------------------------- */
 const form = document.getElementById("iletisim-formu");
 
-// Her alan için kural ve hata mesajı. Mesajlar alanın adını ve ne yazılacağını söyler.
 const kurallar = {
   ad: {
     gecerli: (deger) => deger.trim().length >= 2,
@@ -171,7 +143,6 @@ function alaniKontrolEt(alan) {
   const gecerli = kural.gecerli(alan.value);
 
   alan.setAttribute("aria-invalid", String(!gecerli));
-  // textContent kullanılır, innerHTML değil: kullanıcı metni HTML olarak işlenmez.
   hataAlani.textContent = gecerli ? "" : kural.mesaj;
   return gecerli;
 }
@@ -181,10 +152,8 @@ if (form) {
   const sayac = document.getElementById("mesaj-sayac");
   const mesajAlani = form.elements.mesaj;
 
-  // Tarayıcının kendi balonları yerine kendi mesajlarımızı gösteriyoruz.
   form.setAttribute("novalidate", "");
 
-  // Alan terk edilince (blur) o alan kontrol edilir; hatalıysa yazarken düzelir.
   Object.keys(kurallar).forEach(function (ad) {
     const alan = form.elements[ad];
     alan.addEventListener("blur", function () {
@@ -195,7 +164,6 @@ if (form) {
     });
   });
 
-  // Karakter sayacı
   mesajAlani.addEventListener("input", function () {
     sayac.textContent = mesajAlani.value.length + " / 1000";
   });
@@ -211,12 +179,10 @@ if (form) {
     });
 
     if (ilkHatali) {
-      ilkHatali.focus(); // klavye ve ekran okuyucu kullanıcısı ilk hataya gider
+      ilkHatali.focus();
       return;
     }
 
-    // Veri hiçbir sunucuya gitmez: ziyaretçinin e-posta programında taslak açılır.
-    // encodeURIComponent, metindeki & ? # gibi işaretlerin bağlantıyı bozmasını engeller.
     const konu = "Portfolyo: " + form.elements.konu.value;
     const govde =
       form.elements.mesaj.value.trim() +
@@ -237,9 +203,6 @@ if (form) {
   });
 }
 
-/* 5. "Banyo" efekti ----------------------------------------------------------
-   .develop sınıflı görsel ekranın %35'i görününce bir kez renklenir.
-   Hareket azaltma tercihi açıksa efekt hiç başlamaz. */
 const banyoGorselleri = document.querySelectorAll("[data-develop]");
 const hareketAz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -249,7 +212,7 @@ if (banyoGorselleri.length && "IntersectionObserver" in window && !hareketAz) {
       girdiler.forEach(function (girdi) {
         if (girdi.isIntersecting) {
           girdi.target.classList.add("is-developed");
-          gozlemci.unobserve(girdi.target); // yalnızca bir kez
+          gozlemci.unobserve(girdi.target);
         }
       });
     },
@@ -262,7 +225,6 @@ if (banyoGorselleri.length && "IntersectionObserver" in window && !hareketAz) {
   });
 }
 
-/* 6. Yıl ----------------------------------------------------------------------- */
 document.querySelectorAll("[data-yil]").forEach(function (yer) {
   yer.textContent = new Date().getFullYear();
 });

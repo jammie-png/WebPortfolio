@@ -20,7 +20,7 @@ sahne ve renk çalışmalarını gösteren dört sayfalık portfolyo.
 - **Ortak dosyalar:** tüm sayfalar tek `style.css` ve tek `script.js` kullanır.
 - **Duyarlı tasarım:** masaüstü, tablet (≤1023px) ve telefon (≤639px) için `@media` kuralları;
   ayrıca `prefers-color-scheme`, `prefers-reduced-motion` ve `print`.
-- **JavaScript etkileşimleri** (`script.js` içinde numaralı bloklar):
+- **JavaScript etkileşimleri** (hepsi `script.js` içinde):
   1. Karanlık mod: seçim `localStorage`'da hatırlanır
   2. Mobil menü: `aria-expanded`, Escape ile kapanma
   3. Proje filtreleme (karakter / sahne) ve Türkçe harf duyarlı arama, sonuç sayısı ekran okuyucuya okunur

@@ -18,7 +18,6 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
-  <!-- Sayfa açılış animasyonu için: html etiketine m-enter sınıfı ekler (JavaScript kapalıysa animasyon olmaz, içerik yine görünür) -->
   <script>document.documentElement.classList.add("m-enter")</script>
   <script src="script.js" defer></script>
 </head>
@@ -47,7 +46,6 @@
   </header>
 
   <main id="icerik">
-    <!-- Giriş: Horus karakter sayfası sinema karesi gibi ekranı doldurur, yazılar koyu kutuda -->
     <section class="hero" data-enter aria-labelledby="giris-baslik">
       <div class="wrap">
         <div class="hero__frame hero-text">
@@ -69,7 +67,6 @@
       </div>
     </section>
 
-    <!-- Horus: solda metin, sağda çizimler (5 + 7 sütun) -->
     <section class="section screen" id="horus" aria-labelledby="horus-baslik">
       <div class="wrap grid">
         <div class="span-5 stack">
@@ -98,7 +95,6 @@
       </div>
     </section>
 
-    <!-- Sahneler: koyu bant. Büyük kompozisyon ekrana girince griden renge geçer (script.js, blok 5) -->
     <section class="section section--dark screen" id="sahneler" aria-labelledby="sahneler-baslik">
       <div class="wrap grid">
         <div class="span-5 stack">
@@ -127,7 +123,6 @@
       </div>
     </section>
 
-    <!-- Özgün karakter ve çalışma biçimi -->
     <section class="section section--surface screen" id="karakter" aria-labelledby="karakter-baslik">
       <div class="wrap grid">
         <div class="span-5 stack">
