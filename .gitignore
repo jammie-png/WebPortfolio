@@ -1,0 +1,11 @@
+# Gizli bilgiler (GitHub token vb.) asla depoya girmez
+.env
+.env.*
+
+# Tasarım kontrol araçlarının çıktıları
+.taste-skill/
+shots/
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
